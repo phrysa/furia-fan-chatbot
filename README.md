@@ -20,8 +20,10 @@ JavaScript vanilla
 Design responsivo para desktop e dispositivos móveis
 
 ⚙️ Como Executar
+
 Online
-Acesse a versão online do chatbot: FURIA Fan Chatbot
+Não disponível no momento
+
 Localmente
 
 Clone este repositório:
