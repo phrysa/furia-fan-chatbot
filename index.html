@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FURIA Fan Chat</title>
+    <style>
+        :root {
+            --furia-black: #000000;
+            --furia-blue: #0071bc;
+            --furia-white: #ffffff;
+            --chat-bg: #f0f2f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--chat-bg);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background-color: var(--furia-black);
+            color: var(--furia-white);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: var(--furia-blue);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .menu-button {
+            background: none;
+            border: none;
+            color: var(--furia-white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .bot-message {
+            background-color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: var(--furia-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .quick-reply {
+            background-color: white;
+            border: 1px solid var(--furia-blue);
+            border-radius: 16px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-reply:hover {
+            background-color: #e6f2ff;
+        }
+        
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--chat-bg);
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .send-button {
+            background-color: var(--furia-blue);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .message-time {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        /* Menu styles */
+        .menu-panel {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: none;
+        }
+        
+        .menu-panel.active {
+            display: block;
+        }
+        
+        .menu-option {
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+        
+        .menu-option:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .menu-option:not(:last-child) {
+            border-bottom: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">
+            <div class="logo">F</div>
+            <div class="title">FURIA Fan Chat</div>
+        </div>
+        <button class="menu-button" id="menuButton">&#8942;</button>
+    </div>
+    
+    <div class="menu-panel" id="menuPanel">
+        <div class="menu-option" onclick="showSection('próximas-partidas')">Próximas Partidas</div>
+        <div class="menu-option" onclick="showSection('roster-atual')">Roster Atual</div>
+        <div class="menu-option" onclick="showSection('loja')">Loja Oficial</div>
+        <div class="menu-option" onclick="showSection('configurações')">Configurações</div>
+    </div>
+    
+    <div class="chat-container" id="chatContainer">
+        <div class="message bot-message">
+            Olá, torcedor FURIA! 🖤💙 Sou o FuriaBot, seu assistente para tudo sobre nosso time de CS. Como posso ajudar hoje?
+            <div class="message-time">09:30</div>
+        </div>
+        
+        <div class="quick-replies">
+            <button class="quick-reply" onclick="sendQuickReply('Próximas partidas')">Próximas partidas</button>
+            <button class="quick-reply" onclick="sendQuickReply('Escalação atual')">Escalação atual</button>
+            <button class="quick-reply" onclick="sendQuickReply('Últimos resultados')">Últimos resultados</button>
+            <button class="quick-reply" onclick="sendQuickReply('Comprar ingressos')">Comprar ingressos</button>
+        </div>
+    </div>
+    
+    <div class="input-area">
+        <input type="text" class="message-input" id="messageInput" placeholder="Digite sua mensagem...">
+        <button class="send-button" id="sendButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.5.5 0 0 0-.42.824l.74.825 5.5 4.5.75.618L15.5 16a.5.5 0 0 0 .424-.76l-5.793-7.3 5.793-7.3z"/>
+                <path d="m1.99 7.224.749.66 3.5 3.5-.75.75L1 8.224v-1z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // DOM elements
+        const chatContainer = document.getElementById('chatContainer');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const menuButton = document.getElementById('menuButton');
+        const menuPanel = document.getElementById('menuPanel');
+        
+        // Responses database
+        const responses = {
+            "próximas partidas": "Próximas partidas do FURIA CS:\n\n• vs Team Liquid - 25/04 - 15:00 BRT (ESL Pro League)\n• vs NAVI - 27/04 - 13:30 BRT (BLAST Premier)\n• vs G2 - 01/05 - 10:45 BRT (Major Qualifiers)",
+            "escalação atual": "Roster atual do FURIA CS:\n\n• chelo - Marcelo Cespedes\n• drop - André Abreu\n• saffee - Rafael Costa\n• yuurih - Vinicius Figueiredo\n• kaike - Kaike Cerato\n• guerri (Coach) - Nicholas Nogueira",
+            "últimos resultados": "Últimos resultados:\n\n• FURIA 2 x 0 MIBR (IEM Rio 2025)\n• FURIA 1 x 2 FaZe (BLAST Premier Spring)\n• FURIA 2 x 1 Cloud9 (ESL Pro League)",
+            "comprar ingressos": "Você pode comprar ingressos para os próximos eventos da FURIA em nossa loja oficial: https://loja.furia.gg/ingressos\n\nOu use o código FURIACHAT para 10% de desconto!",
+            "ajuda": "Posso te ajudar com:\n• Informações sobre próximas partidas\n• Escalação atual do time\n• Últimos resultados\n• Compra de ingressos e produtos oficiais\n• Histórico de jogadores\n• Conquistas do time\n\nÉ só perguntar!",
+            "oi": "Oi, torcedor da FURIA! Como posso ajudar hoje?",
+            "olá": "Olá! Pronto para falar sobre a FURIA? Como posso te ajudar?",
+            "loja": "Confira os produtos oficiais da FURIA em nossa loja: https://loja.furia.gg\n\nTemos camisetas, moletons, bonés e muito mais!",
+            "história": "A FURIA Esports foi fundada em 2017 por Jaime Pádua e André Akkari. O time de CS:GO rapidamente se tornou um dos mais importantes do Brasil e da América Latina, com destaque internacional desde 2019.",
+            "troféus": "Principais conquistas da FURIA CS:\n• Campeã da ESEA Season 36: Premier Division (2021)\n• Vice-campeã da IEM Beijing (2020)\n• Campeã da BLAST Premier: Spring American Showdown (2020)\n• Top 5 Mundial em 2020 e 2021"
+        };
+        
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        menuButton.addEventListener('click', function() {
+            menuPanel.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!menuPanel.contains(e.target) && e.target !== menuButton) {
+                menuPanel.classList.remove('active');
+            }
+        });
+        
+        // Functions
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            messageInput.value = '';
+            
+            // Process and respond
+            setTimeout(() => {
+                botResponse(message);
+            }, 500);
+        }
+        
+        function sendQuickReply(text) {
+            addMessage(text, 'user');
+            
+            setTimeout(() => {
+                botResponse(text.toLowerCase());
+            }, 500);
+        }
+        
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender + '-message');
+            
+            // Format links
+            text = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:inherit;text-decoration:underline;">$1</a>');
+            
+            messageElement.innerHTML = text;
+            
+            const timeElement = document.createElement('div');
+            timeElement.classList.add('message-time');
+            
+            const now = new Date();
+            timeElement.textContent = now.getHours().toString().padStart(2, '0') + ':' + 
+                                      now.getMinutes().toString().padStart(2, '0');
+            
+            messageElement.appendChild(timeElement);
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function botResponse(userMessage) {
+            let response = '';
+            userMessage = userMessage.toLowerCase();
+            
+            // Check for keywords in the message
+            if (userMessage.includes('próxima') && userMessage.includes('partida')) {
+                response = responses["próximas partidas"];
+            } else if (userMessage.includes('roster') || userMessage.includes('escalação') || userMessage.includes('jogadores')) {
+                response = responses["escalação atual"];
+            } else if (userMessage.includes('resultado') || userMessage.includes('placar')) {
+                response = responses["últimos resultados"];
+            } else if (userMessage.includes('ingresso') || userMessage.includes('comprar')) {
+                response = responses["comprar ingressos"];
+            } else if (userMessage.includes('loja') || userMessage.includes('produto') || userMessage.includes('camiseta')) {
+                response = responses["loja"];
+            } else if (userMessage.includes('história') || userMessage.includes('fundação')) {
+                response = responses["história"];
+            } else if (userMessage.includes('troféu') || userMessage.includes('conquista') || userMessage.includes('título')) {
+                response = responses["troféus"];
+            } else if (userMessage.includes('oi') || userMessage.includes('olá') || userMessage.includes('eae')) {
+                response = responses["olá"];
+            } else if (userMessage.includes('ajuda') || userMessage.includes('help')) {
+                response = responses["ajuda"];
+            } else {
+                response = "Hmm, não entendi completamente. Você pode perguntar sobre próximas partidas, o roster atual, resultados recentes ou como comprar ingressos e produtos.";
+                
+                // Add quick replies for help
+                setTimeout(() => {
+                    const quickReplies = document.createElement('div');
+                    quickReplies.classList.add('quick-replies');
+                    quickReplies.innerHTML = `
+                        <button class="quick-reply" onclick="sendQuickReply('Ajuda')">Ver todos os comandos</button>
+                    `;
+                    chatContainer.appendChild(quickReplies);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }, 500);
+            }
+            
+            addMessage(response, 'bot');
+        }
+        
+        function showSection(section) {
+            menuPanel.classList.remove('active');
+            sendQuickReply(section.replace('-', ' '));
+        }
+    </script>
+</body>
+</html>
