@@ -1,18 +1,98 @@
-FURIA Fan Chatbot - Explicação do Projeto
-Este protótipo de chatbot é voltado para os fãs do time de CS da FURIA, oferecendo uma interface intuitiva e funcional onde os torcedores podem:
-Principais funcionalidades:
+FURIA Fan Chatbot
 
-Informações sobre próximas partidas - Fique por dentro do calendário de jogos
-Consulta da escalação atual - Conheça os jogadores do roster atual
-Últimos resultados - Veja como o time se saiu nas últimas partidas
-Link para compra de ingressos - Acesso rápido para comprar ingressos para eventos
-História do time e conquistas - Informações sobre a trajetória da FURIA
+Um chatbot interativo para fãs do time de CS da FURIA Esports, oferecendo informações sobre partidas, jogadores, resultados e muito mais!
 
-Aspectos técnicos:
+📋 Sobre o Projeto
+Este projeto foi desenvolvido como parte do Challenge #1 - Experiência Conversacional FURIA, com o objetivo de criar uma interface conversacional que aproxime os fãs do seu time favorito de CS.
+O FURIA Fan Chatbot permite que os usuários:
 
-Design responsivo - Interface que funciona bem em dispositivos móveis e desktop
-Botões de resposta rápida - Para facilitar a interação
-Menu de opções - Acesso rápido às principais funções
-Sistema de reconhecimento de palavras-chave - Entende variações nas perguntas
+Consultem datas e horários das próximas partidas
+Vejam a escalação atual do time
+Acompanhem os últimos resultados
+Acessem links para compra de ingressos e produtos oficiais
+Conheçam a história e conquistas da FURIA
 
-Este protótipo pode ser expandido para incluir mais funcionalidades, como notificações de partidas, estatísticas detalhadas dos jogadores e até streaming ao vivo dos jogos.
+💻 Tecnologias Utilizadas
+
+HTML5
+CSS3
+JavaScript vanilla
+Design responsivo para desktop e dispositivos móveis
+
+⚙️ Como Executar
+Online
+Acesse a versão online do chatbot: FURIA Fan Chatbot
+Localmente
+
+Clone este repositório:
+
+bashgit clone https://github.com/seu-usuario/furia-fan-chatbot.git
+
+Navegue até a pasta do projeto:
+
+bashcd furia-fan-chatbot
+
+Abra o arquivo index.html em qualquer navegador moderno.
+
+🔍 Funcionalidades
+Interface Principal
+
+Design nas cores oficiais da FURIA (preto e azul)
+Sistema de chat intuitivo e amigável
+Botões de resposta rápida para as perguntas mais comuns
+
+Base de Conhecimento
+
+Informações atualizadas sobre próximas partidas
+Dados sobre o roster atual do time
+Histórico de partidas recentes
+Conquistas e história da FURIA
+
+Interatividade
+
+Reconhecimento de palavras-chave nas mensagens
+Menu de opções rápidas
+Respostas contextuais baseadas nas perguntas do usuário
+
+📱 Possíveis Expansões
+
+Versão Telegram: Integração com a API do Telegram para criar um bot oficial
+Notificações: Sistema de alertas sobre início de partidas e resultados
+Estatísticas avançadas: Dados detalhados sobre desempenho dos jogadores
+Login de usuário: Sistema de cadastro para personalizar a experiência
+Mídia integrada: Acesso a highlights e momentos importantes das partidas
+
+📝 Plano de Implementação Completa
+Para implementar este projeto como um produto completo para a FURIA, seria necessário:
+
+Desenvolvimento Backend:
+
+API para buscar dados atualizados das partidas e jogadores
+Sistema de autenticação para usuários
+Banco de dados para armazenar preferências dos usuários
+
+
+Integrações:
+
+HLTV para estatísticas ao vivo
+Plataformas de streaming para embed de partidas
+Sistema de e-commerce da FURIA para compra de produtos
+
+
+Expansão para outras plataformas:
+
+Aplicativo móvel nativo
+Bot para Discord
+Bot para Telegram
+Integração com assistentes de voz
+
+
+
+👥 Autor
+
+Seu Nome - Felipe de Angelo Cardoso
+
+🙏 Agradecimentos
+
+FURIA Esports pela inspiração
+Comunidade de fãs de CS brasileiros
