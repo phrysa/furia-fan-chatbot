@@ -15,27 +15,4 @@ Botões de resposta rápida - Para facilitar a interação
 Menu de opções - Acesso rápido às principais funções
 Sistema de reconhecimento de palavras-chave - Entende variações nas perguntas
 
-Como implementar o projeto completo:
-
-Para o protótipo funcional:
-
-Hospedar o código HTML/CSS/JS em um servidor web
-Expandi-lo para incluir autenticação de usuários (opcional)
-Conectar a uma API de dados para informações em tempo real
-
-
-Para um bot de Telegram:
-
-Usar a mesma lógica de respostas, adaptando para a API do Telegram
-Implementar comandos específicos do Telegram com "/"
-
-
-Documentação no GitHub:
-
-Documentar as funções e a estrutura do código
-Incluir instruções de instalação e uso
-Adicionar um guia de contribuição para a comunidade
-
-
-
 Este protótipo pode ser expandido para incluir mais funcionalidades, como notificações de partidas, estatísticas detalhadas dos jogadores e até streaming ao vivo dos jogos.
