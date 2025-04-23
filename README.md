@@ -28,7 +28,7 @@ Localmente
 
 Clone este repositório:
 
-bashgit clone https://github.com/seu-usuario/furia-fan-chatbot.git
+bashgit clone https://github.com/phrysa/furia-fan-chatbot.git
 
 Navegue até a pasta do projeto:
 
