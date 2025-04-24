@@ -93,7 +93,7 @@ Integração com assistentes de voz
 
 👥 Autor
 
-Seu Nome - Felipe de Angelo Cardoso
+Felipe de Angelo Cardoso
 
 🙏 Agradecimentos
 
