@@ -15,9 +15,10 @@ Conheçam a história e conquistas da FURIA
 💻 Tecnologias Utilizadas
 
 HTML5
-CSS3
+CSS3 (organizado em arquivos externos na pasta assets)
 JavaScript vanilla
 Design responsivo para desktop e dispositivos móveis
+Estrutura de arquivos organizada com separação de responsabilidades
 
 ⚙️ Como Executar
 
